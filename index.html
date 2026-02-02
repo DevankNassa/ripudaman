@@ -3,30 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>RIPUDAMAN — Bespoke Men's Suits & Sherwanis</title>
+  <title>RIPUDAMAN — Bespoke Suits, Sherwanis & Women's Ethnic Dresses</title>
+  <meta name="description" content="RIPUDAMAN — Bespoke men's suits, sherwanis and women's ethnic wear. Handcrafted tailoring and personalized fittings in India." />
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts fallback (Cinzel used as a free serif fallback) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Cinzel:wght@600&display=swap" rel="stylesheet">
 
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="styles.css" />
-
-  <meta name="description" content="Hand-tailored bespoke suits and sherwanis — precision tailoring, alterations and wedding ensembles.">
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="container header-inner">
-      <a class="logo" href="/">
-        <svg class="logo-svg" width="220" height="60" viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title">
-          <title id="title">RIPUDAMAN</title>
-          <text x="50%" y="60%" text-anchor="middle" class="logo-text">RIPUDAMAN</text>
-        </svg>
+      <a class="logo" href="/" aria-label="RIPUDAMAN home">
+        <!-- Logo text uses Trajan Pro if you host it; see styles.css for @font-face instructions -->
+        <span class="logo-text">RIPUDAMAN</span>
       </a>
 
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
-      <nav id="main-nav" class="main-nav" aria-label="Main navigation">
-        <a href="#services">Services</a>
+
+      <nav id="main-nav" class="main-nav" role="navigation" aria-label="Main Navigation">
+        <a class="important-link" href="#services">Services</a>
         <a href="#sherwani">Sherwanis</a>
+        <a href="#womens">Women's Ethnic</a>
         <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -34,14 +33,14 @@
   </header>
 
   <main>
-    <!-- Hero: parallax, speed 0.5 -->
-    <section class="parallax hero" data-speed="0.5"
-      style="background-image: url('https://source.unsplash.com/1600x900/?tailor,suit,workshop');">
+    <!-- Hero (parallax) -->
+    <section class="parallax hero" data-speed="0.45"
+      style="background-image:url('https://source.unsplash.com/1600x900/?tailor,suit,workshop');">
       <div class="container hero-inner">
-        <h1>Custom Mens Suits & Bespoke Sherwanis</h1>
-        <p>Hand-tailored elegance, crafted to fit your story — modern suits, traditional sherwanis, and precision alterations.</p>
+        <h1 class="hero-title">Bespoke Tailoring & Timeless Craftsmanship</h1>
+        <p class="hero-sub">Custom-made men's suits, ornate sherwanis and elegant women's ethnic wear — crafted in India with precision.</p>
         <div class="cta-group">
-          <a class="btn-primary" href="#contact">Book a Fitting</a>
+          <a class="btn-primary important-link" href="#contact">Book a Fitting</a>
           <a class="btn-outline" href="#gallery">View Gallery</a>
         </div>
       </div>
@@ -52,33 +51,42 @@
       <h2>Our Services</h2>
       <div class="cards">
         <article class="card">
-          <h3>Bespoke Suits</h3>
-          <p>Handmade suits with premium linings and canvases — perfect fit, refined details, modern or classic cuts.</p>
-        </article>
-
-        <article class="card">
-          <h3>Alterations & Repairs</h3>
-          <p>Fast, precise adjustments for suits, trousers, shirts and jackets to get you back to perfect fit.</p>
+          <h3>Bespoke Suits (Men)</h3>
+          <p>Handmade suits with full canvassing, premium linings and personalized measurements for a perfect fit.</p>
         </article>
 
         <article class="card">
           <h3>Wedding Sherwanis</h3>
-          <p>Traditional Indian sherwanis and Indo-western ensembles — bespoke embroidery, tailoring, and fitting.</p>
+          <p>Traditional and contemporary sherwanis with custom embroidery, handwork and tailoring for wedding ceremonies.</p>
         </article>
 
         <article class="card">
-          <h3>Consultation & Styling</h3>
-          <p>Personalized style advice, fabric selection, and design consultations to create the look you want.</p>
+          <h3>Women's Ethnic Dresses</h3>
+          <p>Sarees, lehengas, anarkalis and Indo-western ensembles — bespoke stitching, embroidery and styling consultations.</p>
+        </article>
+
+        <article class="card">
+          <h3>Alterations & Styling</h3>
+          <p>Precision alterations, repairs and styling advice to refresh your wardrobe or prepare for special occasions.</p>
         </article>
       </div>
     </section>
 
     <!-- Sherwani parallax -->
-    <section class="parallax sherwani" data-speed="0.4"
-      style="background-image: url('https://source.unsplash.com/1600x900/?sherwani,bridal,embroidered');">
-      <div class="container sherwani-inner">
-        <h2>Wedding Sherwanis & Bridal Wear</h2>
-        <p>Rich fabrics and handcrafted embroidery tailored for your big day.</p>
+    <section class="parallax sherwani" data-speed="0.35"
+      style="background-image:url('https://source.unsplash.com/1600x900/?sherwani,embroidered,wedding');">
+      <div class="container center-text">
+        <h2>Wedding Sherwanis — Heirloom Quality</h2>
+        <p>Custom embroidery, hand-stitched finishing and luxurious fabrics chosen with care.</p>
+      </div>
+    </section>
+
+    <!-- Women's Ethnic parallax -->
+    <section class="parallax womens" data-speed="0.3"
+      style="background-image:url('https://source.unsplash.com/1600x900/?women,ethnic,lehenga');">
+      <div class="container center-text">
+        <h2>Women's Ethnic Wear</h2>
+        <p>From bridal lehengas to festive sarees — designed & tailored to flatter every silhouette.</p>
       </div>
     </section>
 
@@ -86,73 +94,88 @@
     <section id="gallery" class="container gallery-section">
       <h2>Gallery</h2>
       <div class="gallery-grid">
-        <img src="https://source.unsplash.com/800x800/?mens-fashion,suit" alt="Gallery image 1" loading="lazy" />
-        <img src="https://source.unsplash.com/800x800/?tailoring,details" alt="Gallery image 2" loading="lazy" />
-        <img src="https://source.unsplash.com/800x800/?sherwani,ceremony" alt="Gallery image 3" loading="lazy" />
-        <img src="https://source.unsplash.com/800x800/?handmade,stitching" alt="Gallery image 4" loading="lazy" />
+        <img src="https://source.unsplash.com/800x800/?mens-suit,portrait" alt="Men's suit portrait" loading="lazy" />
+        <img src="https://source.unsplash.com/800x800/?sherwani,detail" alt="Sherwani detail" loading="lazy" />
+        <img src="https://source.unsplash.com/800x800/?lehenga,bridal" alt="Bridal lehenga" loading="lazy" />
+        <img src="https://source.unsplash.com/800x800/?tailoring,stitching" alt="Tailoring detail" loading="lazy" />
       </div>
+    </section>
+
+    <!-- Testimonials (optional short block) -->
+    <section class="container testimonials">
+      <h2>Testimonials</h2>
+      <blockquote>
+        "Absolutely perfect fit — the tailoring and attention to detail are unparalleled." — A happy client
+      </blockquote>
     </section>
 
     <!-- Contact -->
     <section id="contact" class="container contact-section">
       <h2>Contact & Bookings</h2>
-      <p>Fill out the form or call to book a private fitting.</p>
-      <form class="contact-form" action="#" method="post" onsubmit="alert('Form demo: replace action with real endpoint'); return false;">
+      <p>Visit our workshop or book a private fitting. Replace the form action with your preferred backend or Formspree/Netlify Forms.</p>
+
+      <form class="contact-form" action="#" method="post" onsubmit="alert('Demo form — replace action with your backend'); return false;">
         <label>
           Name
           <input type="text" name="name" required />
         </label>
+
         <label>
           Email
           <input type="email" name="email" required />
         </label>
+
         <label>
+          Phone
+          <input type="tel" name="phone" />
+        </label>
+
+        <label class="full">
           Message
           <textarea name="message" required></textarea>
         </label>
-        <button type="submit" class="btn-primary">Send</button>
+
+        <button class="btn-primary important-link" type="submit">Send</button>
       </form>
     </section>
 
     <footer class="site-footer">
-      <div class="container">
-        <p>Images via <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>. Consider downloading and hosting selected images in /images for stability.</p>
+      <div class="container footer-inner">
+        <p>RIPUDAMAN — Bespoke Tailoring. Images via <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>. For production, download and host images in /images.</p>
         <p>&copy; <span id="year"></span> RIPUDAMAN</p>
       </div>
     </footer>
   </main>
 
-  <!-- Lightbox overlay -->
+  <!-- Lightbox -->
   <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog">
     <button class="lightbox-close" aria-label="Close">×</button>
     <img class="lightbox-img" alt="" />
   </div>
 
   <script>
-    // Set copyright year
+    // Copyright year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Mobile nav toggle
     const navToggle = document.querySelector('.nav-toggle');
     const mainNav = document.getElementById('main-nav');
     navToggle.addEventListener('click', () => {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
       navToggle.setAttribute('aria-expanded', String(!expanded));
       mainNav.classList.toggle('open');
     });
 
-    // Parallax using requestAnimationFrame (performant)
+    // Parallax (performant): translateY on elements with .parallax
     const parallaxEls = document.querySelectorAll('.parallax');
     let latestScrollY = 0;
     let ticking = false;
-
     function onScroll() {
       latestScrollY = window.scrollY;
       if (!ticking) {
         window.requestAnimationFrame(() => {
           parallaxEls.forEach(el => {
-            const speed = parseFloat(el.dataset.speed) || 0.5;
-            // Translate Y for smoother, GPU-accelerated movement
+            const speed = parseFloat(el.dataset.speed) || 0.4;
             el.style.transform = `translateY(${-(latestScrollY * speed)}px)`;
           });
           ticking = false;
@@ -163,7 +186,7 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // Simple lightbox for gallery
+    // Gallery lightbox
     const galleryImgs = document.querySelectorAll('.gallery-grid img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('.lightbox-img');
@@ -171,7 +194,9 @@
 
     galleryImgs.forEach(img => {
       img.addEventListener('click', () => {
-        lightboxImg.src = img.src.replace('/800x800/', '/1200x1200/');
+        // Prefer higher-res by requesting a larger size
+        const src = img.src.replace('/800x800/', '/1200x1200/');
+        lightboxImg.src = src;
         lightboxImg.alt = img.alt || '';
         lightbox.classList.add('open');
         lightbox.setAttribute('aria-hidden', 'false');
@@ -184,14 +209,8 @@
       lightboxImg.src = '';
     }
     lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    // Accessibility: close on Escape
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
-    });
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox(); });
   </script>
 </body>
 </html>
