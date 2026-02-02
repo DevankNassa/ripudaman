@@ -1,44 +1,197 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=YourGoogleFont:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <title>Responsive Parallax Site</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RIPUDAMAN — Bespoke Men's Suits & Sherwanis</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <meta name="description" content="Hand-tailored bespoke suits and sherwanis — precision tailoring, alterations and wedding ensembles.">
 </head>
 <body>
-    <header>
-        <nav>
-            <!-- Navigation content -->
-        </nav>
-    </header>
-    <section class="hero-parallax" style="background-image: url('https://source.unsplash.com/1600x900/?tailor,suit,man');">
-        <h1>Your Hero Title</h1>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">
+        <svg class="logo-svg" width="220" height="60" viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title">
+          <title id="title">RIPUDAMAN</title>
+          <text x="50%" y="60%" text-anchor="middle" class="logo-text">RIPUDAMAN</text>
+        </svg>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#sherwani">Sherwanis</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero: parallax, speed 0.5 -->
+    <section class="parallax hero" data-speed="0.5"
+      style="background-image: url('https://source.unsplash.com/1600x900/?tailor,suit,workshop');">
+      <div class="container hero-inner">
+        <h1>Custom Mens Suits & Bespoke Sherwanis</h1>
+        <p>Hand-tailored elegance, crafted to fit your story — modern suits, traditional sherwanis, and precision alterations.</p>
+        <div class="cta-group">
+          <a class="btn-primary" href="#contact">Book a Fitting</a>
+          <a class="btn-outline" href="#gallery">View Gallery</a>
+        </div>
+      </div>
     </section>
-    <section class="sherwani-parallax" style="background-image: url('https://source.unsplash.com/1600x900/?sherwani,wedding,fabric');">
-        <h2>Sherwani Section</h2>
+
+    <!-- Services -->
+    <section id="services" class="container services">
+      <h2>Our Services</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Bespoke Suits</h3>
+          <p>Handmade suits with premium linings and canvases — perfect fit, refined details, modern or classic cuts.</p>
+        </article>
+
+        <article class="card">
+          <h3>Alterations & Repairs</h3>
+          <p>Fast, precise adjustments for suits, trousers, shirts and jackets to get you back to perfect fit.</p>
+        </article>
+
+        <article class="card">
+          <h3>Wedding Sherwanis</h3>
+          <p>Traditional Indian sherwanis and Indo-western ensembles — bespoke embroidery, tailoring, and fitting.</p>
+        </article>
+
+        <article class="card">
+          <h3>Consultation & Styling</h3>
+          <p>Personalized style advice, fabric selection, and design consultations to create the look you want.</p>
+        </article>
+      </div>
     </section>
-    <section class="services-grid">
-        <div class="service">Service 1</div>
-        <div class="service">Service 2</div>
-        <div class="service">Service 3</div>
+
+    <!-- Sherwani parallax -->
+    <section class="parallax sherwani" data-speed="0.4"
+      style="background-image: url('https://source.unsplash.com/1600x900/?sherwani,bridal,embroidered');">
+      <div class="container sherwani-inner">
+        <h2>Wedding Sherwanis & Bridal Wear</h2>
+        <p>Rich fabrics and handcrafted embroidery tailored for your big day.</p>
+      </div>
     </section>
-    <section class="gallery-grid">
-        <div class="gallery-item" onclick="openLightbox();">[Gallery Image 1]</div>
-        <!-- More gallery items -->
+
+    <!-- Gallery -->
+    <section id="gallery" class="container gallery-section">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <img src="https://source.unsplash.com/800x800/?mens-fashion,suit" alt="Gallery image 1" loading="lazy" />
+        <img src="https://source.unsplash.com/800x800/?tailoring,details" alt="Gallery image 2" loading="lazy" />
+        <img src="https://source.unsplash.com/800x800/?sherwani,ceremony" alt="Gallery image 3" loading="lazy" />
+        <img src="https://source.unsplash.com/800x800/?handmade,stitching" alt="Gallery image 4" loading="lazy" />
+      </div>
     </section>
-    <section class="contact-form">
-        <!-- Contact form content -->
+
+    <!-- Contact -->
+    <section id="contact" class="container contact-section">
+      <h2>Contact & Bookings</h2>
+      <p>Fill out the form or call to book a private fitting.</p>
+      <form class="contact-form" action="#" method="post" onsubmit="alert('Form demo: replace action with real endpoint'); return false;">
+        <label>
+          Name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Message
+          <textarea name="message" required></textarea>
+        </label>
+        <button type="submit" class="btn-primary">Send</button>
+      </form>
     </section>
-    <footer>
-        <p>Images courtesy of <a href="https://unsplash.com">Unsplash</a> and <a href="https://pexels.com">Pexels</a>.</p>
-        <p>Replace with fixed images if desired.</p>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Images via <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>. Consider downloading and hosting selected images in /images for stability.</p>
+        <p>&copy; <span id="year"></span> RIPUDAMAN</p>
+      </div>
     </footer>
-    <script>
-        // Parallax effect and lightbox script
-        function openLightbox() { /* Lightbox function code */ }
-        window.addEventListener('scroll', function() { /* Parallax code using requestAnimationFrame */ });
-    </script>
+  </main>
+
+  <!-- Lightbox overlay -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog">
+    <button class="lightbox-close" aria-label="Close">×</button>
+    <img class="lightbox-img" alt="" />
+  </div>
+
+  <script>
+    // Set copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const mainNav = document.getElementById('main-nav');
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      mainNav.classList.toggle('open');
+    });
+
+    // Parallax using requestAnimationFrame (performant)
+    const parallaxEls = document.querySelectorAll('.parallax');
+    let latestScrollY = 0;
+    let ticking = false;
+
+    function onScroll() {
+      latestScrollY = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          parallaxEls.forEach(el => {
+            const speed = parseFloat(el.dataset.speed) || 0.5;
+            // Translate Y for smoother, GPU-accelerated movement
+            el.style.transform = `translateY(${-(latestScrollY * speed)}px)`;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Simple lightbox for gallery
+    const galleryImgs = document.querySelectorAll('.gallery-grid img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const lightboxClose = lightbox.querySelector('.lightbox-close');
+
+    galleryImgs.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src.replace('/800x800/', '/1200x1200/');
+        lightboxImg.alt = img.alt || '';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImg.src = '';
+    }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Accessibility: close on Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+  </script>
 </body>
 </html>
