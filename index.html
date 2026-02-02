@@ -1,162 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>RIPUDAMAN — Bespoke Men's Suits & Sherwanis</title>
-
-  <!-- Google Fonts for body & headings (keeps site handsome if Trajan Pro isn't available) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Cinzel:wght@600&display=swap" rel="stylesheet">
-
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Note: To use Trajan Pro for the logo, add the Trajan Pro webfont files to /fonts and uncomment the @font-face in styles.css -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Parallax Design</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .parallax {
+            background-image: url('https://example.com/image1.jpg');
+            height: 100vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3rem;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        /* Add more sections with different background images */
+        .section:nth-child(odd) {
+            background-color: #111;
+        }
+        .section:nth-child(even) {
+            background-color: #222;
+        }
+    </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="/">
-        <!-- Inline SVG logo referencing the logo text (uses Trajan Pro if installed / loaded) -->
-        <svg class="logo-svg" width="220" height="60" viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title">
-          <title id="title">RIPUDAMAN</title>
-          <text x="50%" y="60%" text-anchor="middle" class="logo-text">RIPUDAMAN</text>
-        </svg>
-      </a>
-
-      <nav class="main-nav">
-        <a href="#services">Services</a>
-        <a href="#sherwani">Sherwanis</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <h1>Custom Mens Suits & Bespoke Sherwanis</h1>
-        <p>Hand-tailored elegance, crafted to fit your story — modern suits, traditional sherwanis, and precision alterations.</p>
-        <div class="cta-group">
-          <a class="btn-primary" href="#contact">Book a Fitting</a>
-          <a class="btn-outline" href="#gallery">View Gallery</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="container services">
-      <h2>Our Services</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>Bespoke Suits</h3>
-          <p>Handmade suits with premium linings and canvases — perfect fit, refined details, modern or classic cuts.</p>
-        </article>
-
-        <article class="card">
-          <h3>Alterations & Repairs</h3>
-          <p>Fast, precise adjustments for suits, trousers, shirts and jackets to get you back to perfect fit.</p>
-        </article>
-
-        <article class="card">
-          <h3>Wedding Sherwanis</h3>
-          <p>Traditional Indian sherwanis and Indo-western ensembles — bespoke embroidery, tailoring, and fitting.</p>
-        </article>
-
-        <article class="card">
-          <h3>Consultation & Styling</h3>
-          <p>Personalized style advice, fabric selection, and design consultations to create the look you want.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="sherwani" class="container sherwani">
-      <div class="sherwani-inner">
-        <div class="sherwani-text">
-          <h2>Indian Sherwanis</h2>
-          <p>From classic zari work to modern embroidered sherwanis, RIPUDAMAN offers fully bespoke sherwani tailoring — lining, embroidery, hand-stitching, and final drape adjustments for weddings and ceremonies.</p>
-          <ul>
-            <li>Custom embroidery & embellishments</li>
-            <li>Hand-stitched finishing & strong construction</li>
-            <li>Made-to-measure fitting sessions</li>
-          </ul>
-          <a class="btn-primary" href="#contact">Request Sherwani Consultation</a>
-        </div>
-        <div class="sherwani-image">
-          <!-- Placeholder: replace with your hero/product image -->
-          <img src="images/sherwani-placeholder.svg" alt="Sherwani example">
-        </div>
-      </div>
-    </section>
-
-    <section id="gallery" class="container gallery">
-      <h2>Gallery</h2>
-      <p class="muted">Selected works — suits, sherwanis, and wedding collections.</p>
-      <div class="gallery-grid">
-        <img src="images/gallery-1.svg" alt="Gallery item 1">
-        <img src="images/gallery-2.svg" alt="Gallery item 2">
-        <img src="images/gallery-3.svg" alt="Gallery item 3">
-        <img src="images/gallery-4.svg" alt="Gallery item 4">
-      </div>
-    </section>
-
-    <section id="contact" class="container contact">
-      <h2>Contact & Bookings</h2>
-      <div class="contact-grid">
-        <form id="contactForm" class="contact-form" onsubmit="return submitForm(event)">
-          <label>
-            Name
-            <input type="text" id="name" name="name" required>
-          </label>
-          <label>
-            Email
-            <input type="email" id="email" name="email" required>
-          </label>
-          <label>
-            Service (suits / sherwani / alteration)
-            <input type="text" id="service" name="service" required>
-          </label>
-          <label>
-            Message
-            <textarea id="message" name="message" rows="4"></textarea>
-          </label>
-          <button class="btn-primary" type="submit">Send Request</button>
-        </form>
-
-        <div class="contact-info">
-          <h3>Visit Our Tailor Shop</h3>
-          <p>Address: Replace with actual address</p>
-          <p>Phone: +91-XXXXXXXXXX</p>
-          <p>Email: hello@ripudaman.example</p>
-
-          <h4>Opening Hours</h4>
-          <p>Mon — Sat: 10:00 — 19:00</p>
-          <p>Sun: By appointment</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>&copy; <span id="year"></span> RIPUDAMAN — Hand-Tailored Menswear & Sherwanis</p>
-      <p class="muted">Made with care. Custom fittings by appointment.</p>
-    </div>
-  </footer>
-
-  <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Simple placeholder form handler (no backend)
-    function submitForm(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const service = document.getElementById('service').value.trim();
-      alert('Thanks ' + name + '! We received your request for: ' + service + '. We will contact you shortly.');
-      e.target.reset();
-      return false;
-    }
-  </script>
+    <div class="parallax"></div>
+    <div class="section">Section 1</div>
+    <div class="parallax"></div>
+    <div class="section">Section 2</div>
+    <div class="parallax"></div>
+    <div class="section">Section 3</div>
+    <div class="parallax"></div>
 </body>
 </html>
