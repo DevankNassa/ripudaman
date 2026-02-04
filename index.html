@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIPUDAMAN - Premium Tailor Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Trajan Pro', 'Georgia', serif;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #d4af37 0%, #f0e68c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="%23f5f5f5"/><line x1="0" y1="0" x2="100" y2="100" stroke="%23ddd" stroke-width="1"/><line x1="100" y1="0" x2="0" y2="100" stroke="%23ddd" stroke-width="1"/></pattern></defs><rect width="1200" height="600" fill="%231a1a1a"/><rect width="1200" height="600" fill="url(%23pattern)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-family: 'Trajan Pro', 'Georgia', serif;
+            font-size: 64px;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #d4af37;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #d4af37;
+            color: #1a1a1a;
+            padding: 12px 40px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 0 10px;
+        }
+
+        .cta-button:hover {
+            background: #f0e68c;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #d4af37;
+        }
+
+        .cta-button-secondary:hover {
+            background: #d4af37;
+            color: #1a1a1a;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+
+        .section-title {
+            font-family: 'Trajan Pro', 'Georgia', serif;
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            border-color: #d4af37;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .product-image {
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-card h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .product-card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .why-us .section-title {
+            color: white;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature {
+            display: flex;
+            gap: 15px;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: #d4af37;
+            min-width: 50px;
+        }
+
+        .feature-content h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #d4af37;
+        }
+
+        .feature-content p {
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-item-icon {
+            font-size: 30px;
+            color: #d4af37;
+            min-width: 40px;
+        }
+
+        .contact-item-content h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #1a1a1a;
+        }
+
+        .contact-item-content p {
+            color: #666;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Georgia', serif;
+            font-size: 14px;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 0;
+        }
+
+        footer p {
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">RIPUDAMAN</div>
+                <nav>
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#products">Products</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>RIPUDAMAN</h1>
+            <p>Crafted Excellence in Men's Formal Wear</p>
+            <a href="#contact" class="cta-button">Get Tailored</a>
+            <a href="#products" class="cta-button cta-button-secondary">Explore Collections</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">👔</div>
+                    <h3>Custom Suits</h3>
+                    <p>Bespoke tailoring for premium suits crafted to your exact measurements and preferences. Experience unparalleled comfort and elegance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🥻</div>
+                    <h3>Indian Sherwani</h3>
+                    <p>Authentic traditional sherwanis with modern designs. Perfect for weddings, ceremonies, and special occasions. Intricate details and fine craftsmanship.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✂️</div>
+                    <h3>Alterations & Repairs</h3>
+                    <p>Professional alterations and repairs to keep your formal wear looking pristine. Quick turnaround with meticulous attention to detail.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Collections</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">👔</div>
+                    <div class="product-info">
+                        <h4>Business Suits</h4>
+                        <p>Classic and contemporary business suits tailored for the modern professional.</p>
+                        <p class="price">Starting from ₹15,000</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🎩</div>
+                    <div class="product-info">
+                        <h4>Formal Dinner Suits</h4>
+                        <p>Elegant tuxedos and formal wear for evening events and celebrations.</p>
+                        <p class="price">Starting from ₹20,000</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🥻</div>
+                    <div class="product-info">
+                        <h4>Designer Sherwani</h4>
+                        <p>Luxurious sherwanis with traditional and modern fusion designs.</p>
+                        <p class="price">Starting from ₹25,000</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">👗</div>
+                    <div class="product-info">
+                        <h4>Wedding Collection</h4>
+                        <p>Premium wedding sherwanis and suits with intricate embroidery.</p>
+                        <p class="price">Starting from ₹35,000</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🧥</div>
+                    <div class="product-info">
+                        <h4>Casual Wear</h4>
+                        <p>Comfortable yet stylish casual wear for everyday elegance.</p>
+                        <p class="price">Starting from ₹10,000</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🎭</div>
+                    <div class="product-info">
+                        <h4>Traditional Ethnic</h4>
+                        <p>Authentic ethnic wear preserving cultural heritage with modern appeal.</p>
+                        <p class="price">Starting from ₹18,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us" id="about">
+        <div class="container">
+            <h2 class="section-title">Why Choose RIPUDAMAN</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">⭐</div>
+                    <div class="feature-content">
+                        <h4>Expert Craftsmanship</h4>
+                        <p>Decades of tailoring expertise ensuring perfect fit and finish on every piece.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✨</div>
+                    <div class="feature-content">
+                        <h4>Premium Materials</h4>
+                        <p>We use only the finest fabrics and materials sourced globally for superior quality.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⏰</div>
+                    <div class="feature-content">
+                        <h4>Timely Delivery</h4>
+                        <p>Reliable delivery schedules without compromising on quality and precision.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-content">
+                        <h4>Custom Designs</h4>
+                        <p>Personalized designs tailored to your vision and individual style preferences.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💎</div>
+                    <div class="feature-content">
+                        <h4>Attention to Detail</h4>
+                        <p>Every stitch, every seam perfected to create wearable masterpieces.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🤝</div>
+                    <div class="feature-content">
+                        <h4>Customer Service</h4>
+                        <p>Dedicated support to ensure your complete satisfaction with every purchase.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-content">
+                            <h4>Address</h4>
+                            <p>123 Fashion Street, Tailor Lane<br>New Delhi, India - 110001</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-item-content">
+                            <h4>Phone</h4>
+                            <p>+91 98765 43210<br>+91 11 4567 8900</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">✉️</div>
+                        <div class="contact-item-content">
+                            <h4>Email</h4>
+                            <p>info@ripudaman.com<br>orders@ripudaman.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">🕐</div>
+                        <div class="contact-item-content">
+                            <h4>Business Hours</h4>
+                            <p>Monday - Saturday: 10:00 AM - 8:00 PM<br>Sunday: 11:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! We will contact you soon.');">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="tel" placeholder="Your Phone Number">
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit" class="cta-button" style="align-self: flex-start; border: none; cursor: pointer;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 RIPUDAMAN - Premium Men's Tailor Shop. All Rights Reserved.</p>
+            <p>Crafting Excellence Since Day One | Tradition Meets Modern Elegance</p>
+        </div>
+    </footer>
+</body>
+</html>
