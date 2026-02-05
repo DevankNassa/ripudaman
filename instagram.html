@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIPUDAMAN - Instagram Feed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f8f8;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: #ffffff;
+            color: #333;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #E1306C;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #E1306C;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Banner Widget */
+        .hero-banner {
+            background: #ffffff;
+            padding: 40px 0;
+            border-bottom: 3px solid #E1306C;
+        }
+
+        .hero-banner-widget {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-banner-image {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background: linear-gradient(135deg, #feda75 0%, #fa7e1e 25%, #d92e7f 50%, #9b36b7 75%, #515bd4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-banner-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-banner-content {
+            padding: 40px;
+        }
+
+        .hero-banner-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .hero-banner-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #feda75 0%, #fa7e1e 25%, #d92e7f 50%, #9b36b7 75%, #515bd4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .hero-banner-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-banner-username {
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 14px;
+        }
+
+        .hero-banner-location {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .hero-banner-description {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .hero-banner-stats {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hero-banner-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-banner-stat-number {
+            font-weight: 700;
+            font-size: 18px;
+            color: #E1306C;
+        }
+
+        .hero-banner-stat-label {
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-banner-button {
+            display: inline-block;
+            background: #E1306C;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s;
+            border: 2px solid #E1306C;
+        }
+
+        .hero-banner-button:hover {
+            background: transparent;
+            color: #E1306C;
+        }
+
+        /* Instagram Feed Section */
+        .instagram-feed {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .feed-description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 14px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .instagram-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .instagram-post {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+
+        .instagram-post:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(225, 48, 108, 0.15);
+        }
+
+        .instagram-post-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .instagram-post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #feda75 0%, #fa7e1e 25%, #d92e7f 50%, #9b36b7 75%, #515bd4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .instagram-post-user {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .instagram-post-username {
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 13px;
+        }
+
+        .instagram-post-time {
+            color: #999;
+            font-size: 11px;
+        }
+
+        .instagram-post-menu {
+            cursor: pointer;
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .instagram-post-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-weight: 600;
+            overflow: hidden;
+        }
+
+        .instagram-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .instagram-post-actions {
+            display: flex;
+            gap: 15px;
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .instagram-action-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .instagram-action-button:hover {
+            color: #E1306C;
+        }
+
+        .instagram-post-likes {
+            padding: 0 15px;
+            font-weight: 700;
+            font-size: 12px;
+            color: #1a1a1a;
+        }
+
+        .instagram-post-caption {
+            padding: 12px 15px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .instagram-post-caption strong {
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .instagram-post-caption .hashtag {
+            color: #E1306C;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .instagram-post-comments {
+            padding: 12px 15px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .instagram-post-comments a {
+            color: #999;
+            text-decoration: none;
+        }
+
+        .instagram-post-comments a:hover {
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #ccc;
+            text-align: center;
+            padding: 40px 0;
+            border-top: 3px solid #E1306C;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #E1306C;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* Setup Instructions */
+        .setup-info {
+            background: #f0f9ff;
+            border-left: 4px solid #E1306C;
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 4px;
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .setup-info strong {
+            color: #E1306C;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #ffffff;
+                flex-direction: column;
+                gap: 0;
+                text-align: left;
+                padding: 0 20px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out, padding 0.2s ease-out;
+                pointer-events: none;
+                border-bottom: 3px solid #E1306C;
+            }
+
+            nav.active {
+                max-height: 300px;
+                padding: 20px;
+                pointer-events: auto;
+            }
+
+            nav a {
+                padding: 12px 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .hero-banner-widget {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-banner-image {
+                min-height: 300px;
+            }
+
+            .hero-banner-content {
+                padding: 30px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .instagram-posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+            }
+
+            header {
+                padding: 15px 0;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .hero-banner-content {
+                padding: 20px;
+            }
+
+            .hero-banner-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .setup-info {
+                padding: 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">RIPUDAMAN</div>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav id="navMenu">
+                    <a href="index.html">Classic</a>
+                    <a href="portfolio.html">Gothic</a>
+                    <a href="professional.html">Professional</a>
+                    <a href="avant-garde.html">Avant Garde</a>
+                    <a href="#feed">Instagram Feed</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner Widget -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="hero-banner-widget">
+                <div class="hero-banner-image">
+                    <img src="" alt="Featured Instagram Post" style="display: none;">
+                    <span>Add Instagram Post Image</span>
+                </div>
+                <div class="hero-banner-content">
+                    <div class="hero-banner-header">
+                        <div class="hero-banner-avatar">📷</div>
+                        <div class="hero-banner-meta">
+                            <div class="hero-banner-username">@ripudaman</div>
+                            <div class="hero-banner-location">New Delhi, India</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-banner-description">
+                        Premium bespoke tailoring and custom formal wear crafted with excellence. Each piece is a masterpiece of precision and style. Discover the art of tailoring redefined. ✨
+                    </div>
+
+                    <div class="hero-banner-stats">
+                        <div class="hero-banner-stat">
+                            <div class="hero-banner-stat-number">2,451</div>
+                            <div class="hero-banner-stat-label">Likes</div>
+                        </div>
+                        <div class="hero-banner-stat">
+                            <div class="hero-banner-stat-number">186</div>
+                            <div class="hero-banner-stat-label">Comments</div>
+                        </div>
+                        <div class="hero-banner-stat">
+                            <div class="hero-banner-stat-number">3</div>
+                            <div class="hero-banner-stat-label">Days Ago</div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="hero-banner-button">View on Instagram</a>
+                </div>
+            </div>
+
+            <div class="setup-info">
+                <strong>Hero Banner Setup:</strong> To connect a real Instagram post, replace the image src and update the description text. You can fetch post data via Instagram Basic Display API or embed Instagram posts directly using their embed URLs.
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed Section -->
+    <section class="instagram-feed" id="feed">
+        <div class="container">
+            <h2 class="section-title">Latest Posts</h2>
+            <p class="feed-description">Follow us on Instagram for the latest collections, behind-the-scenes content, and bespoke tailoring inspirations.</p>
+
+            <div class="instagram-posts-grid">
+                <!-- Post 1 -->
+                <div class="instagram-post">
+                    <div class="instagram-post-header">
+                        <div class="instagram-post-avatar">RP</div>
+                        <div class="instagram-post-user">
+                            <div class="instagram-post-username">ripudaman</div>
+                            <div class="instagram-post-time">2 days ago</div>
+                        </div>
+                        <div class="instagram-post-menu">⋯</div>
+                    </div>
+
+                    <div class="instagram-post-image">
+                        <img src="" alt="Instagram Post 1" style="display: none;">
+                        <span>Add Post 1 Image</span>
+                    </div>
+
+                    <div class="instagram-post-actions">
+                        <button class="instagram-action-button" title="Like">♡</button>
+                        <button class="instagram-action-button" title="Comment">💬</button>
+                        <button class="instagram-action-button" title="Share">📤</button>
+                    </div>
+
+                    <div class="instagram-post-likes">
+                        <strong>1,842 likes</strong>
+                    </div>
+
+                    <div class="instagram-post-caption">
+                        <strong>ripudaman</strong> Custom Business Suit in Premium Wool. Tailored to perfection with meticulous attention to every detail. Book your appointment today! <span class="hashtag">#customtailoring</span> <span class="hashtag">#mensfashion</span> <span class="hashtag">#bespoketailoring</span>
+                    </div>
+
+                    <div class="instagram-post-comments">
+                        <a href="#">View all 156 comments</a>
+                    </div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="instagram-post">
+                    <div class="instagram-post-header">
+                        <div class="instagram-post-avatar">RP</div>
+                        <div class="instagram-post-user">
+                            <div class="instagram-post-username">ripudaman</div>
+                            <div class="instagram-post-time">5 days ago</div>
+                        </div>
+                        <div class="instagram-post-menu">⋯</div>
+                    </div>
+
+                    <div class="instagram-post-image">
+                        <img src="" alt="Instagram Post 2" style="display: none;">
+                        <span>Add Post 2 Image</span>
+                    </div>
+
+                    <div class="instagram-post-actions">
+                        <button class="instagram-action-button" title="Like">♡</button>
+                        <button class="instagram-action-button" title="Comment">💬</button>
+                        <button class="instagram-action-button" title="Share">📤</button>
+                    </div>
+
+                    <div class="instagram-post-likes">
+                        <strong>2,156 likes</strong>
+                    </div>
+
+                    <div class="instagram-post-caption">
+                        <strong>ripudaman</strong> Designer Sherwani Collection. Exquisite embroidery and premium fabrics for your special occasions. Handcrafted with passion and precision. <span class="hashtag">#sherwani</span> <span class="hashtag">#weddingwear</span> <span class="hashtag">#luxuryfashion</span>
+                    </div>
+
+                    <div class="instagram-post-comments">
+                        <a href="#">View all 203 comments</a>
+                    </div>
+                </div>
+
+                <!-- Post 3 -->
+                <div class="instagram-post">
+                    <div class="instagram-post-header">
+                        <div class="instagram-post-avatar">RP</div>
+                        <div class="instagram-post-user">
+                            <div class="instagram-post-username">ripudaman</div>
+                            <div class="instagram-post-time">8 days ago</div>
+                        </div>
+                        <div class="instagram-post-menu">⋯</div>
+                    </div>
+
+                    <div class="instagram-post-image">
+                        <img src="" alt="Instagram Post 3" style="display: none;">
+                        <span>Add Post 3 Image</span>
+                    </div>
+
+                    <div class="instagram-post-actions">
+                        <button class="instagram-action-button" title="Like">♡</button>
+                        <button class="instagram-action-button" title="Comment">💬</button>
+                        <button class="instagram-action-button" title="Share">📤</button>
+                    </div>
+
+                    <div class="instagram-post-likes">
+                        <strong>1,654 likes</strong>
+                    </div>
+
+                    <div class="instagram-post-caption">
+                        <strong>ripudaman</strong> Formal Tuxedo for Evening Events. Elegance meets sophistication in our premium collection. Perfect fit guaranteed. <span class="hashtag">#tuxedo</span> <span class="hashtag">#formalwear</span> <span class="hashtag">#fashionstyle</span>
+                    </div>
+
+                    <div class="instagram-post-comments">
+                        <a href="#">View all 128 comments</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setup-info">
+                <strong>Feed Widget Setup:</strong> These widgets display the first 3 Instagram posts. To populate with real Instagram data, you can:<br>
+                1. Use Instagram Basic Display API to fetch actual posts from an Instagram account<br>
+                2. Manually update image src and caption text for each post<br>
+                3. Replace with Instagram embed iframes for authentic Instagram styling<br>
+                All image placeholders are ready for real image URLs.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 RIPUDAMAN - Premium Men's Tailor Shop. All Rights Reserved.</p>
+            <p>Follow us: <a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">Twitter</a></p>
+            <p style="margin-top: 20px;"><a href="index.html">Classic</a> | <a href="portfolio.html">Gothic</a> | <a href="professional.html">Professional</a> | <a href="avant-garde.html">Avant Garde</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('header')) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Like button interaction
+        document.querySelectorAll('.instagram-action-button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.title === 'Like') {
+                    this.textContent = this.textContent === '♡' ? '♥' : '♡';
+                    this.style.color = this.textContent === '♥' ? '#E1306C' : '#333';
+                }
+            });
+        });
+
+        // Hashtag click
+        document.querySelectorAll('.hashtag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                alert('Would navigate to: ' + this.textContent);
+            });
+        });
+    </script>
+</body>
+</html>
