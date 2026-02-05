@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIPUDAMAN - Professional Tailoring</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f8f8;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: #ffffff;
+            color: #333;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #1a1a1a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #1a1a1a;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #ccc;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #1a1a1a;
+            color: white;
+            padding: 14px 45px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 0 10px;
+            border: 2px solid #1a1a1a;
+        }
+
+        .cta-button:hover {
+            background: #333;
+            border-color: #555;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button-secondary:hover {
+            background: white;
+            color: #1a1a1a;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+
+        .section-title {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #1a1a1a;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            aspect-ratio: 1;
+            background: #e8e8e8;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #d0d0d0;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #999;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            font-size: 16px;
+            color: #999;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 26, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-text {
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: #f8f8f8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border-top: 4px solid #1a1a1a;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: #f8f8f8;
+            padding: 30px;
+            border-radius: 6px;
+            border-left: 4px solid #1a1a1a;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transform: translateX(5px);
+        }
+
+        .testimonial-text {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            color: #1a1a1a;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .testimonial-rating {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #f8f8f8;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-item-icon {
+            font-size: 24px;
+            color: #1a1a1a;
+            min-width: 30px;
+        }
+
+        .contact-item-content h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .contact-item-content p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            background: white;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #ccc;
+            text-align: center;
+            padding: 40px 0;
+            border-top: 3px solid #333;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #ffffff;
+                flex-direction: column;
+                gap: 0;
+                text-align: left;
+                padding: 0 20px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out, padding 0.2s ease-out;
+                pointer-events: none;
+                border-bottom: 3px solid #1a1a1a;
+            }
+
+            nav.active {
+                max-height: 300px;
+                padding: 20px;
+                pointer-events: auto;
+            }
+
+            nav a {
+                padding: 12px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+            }
+
+            header {
+                padding: 15px 0;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content p {
+                font-size: 14px;
+            }
+
+            .cta-button {
+                padding: 10px 25px;
+                font-size: 13px;
+                margin: 5px;
+            }
+
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+
+            .gallery-grid,
+            .services-grid,
+            .testimonials-grid {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">RIPUDAMAN</div>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav id="navMenu">
+                    <a href="index.html">Classic</a>
+                    <a href="portfolio.html">Gothic</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#services">Services</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>RIPUDAMAN</h1>
+                <p>Premium Tailoring & Bespoke Clothing Services</p>
+                <a href="#contact" class="cta-button">Get Started</a>
+                <a href="#gallery" class="cta-button cta-button-secondary">View Gallery</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Work</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="" alt="Custom Business Suit" style="display: none;">
+                        <span>Add image here</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Custom Business Suit</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="" alt="Formal Tuxedo" style="display: none;">
+                        <span>Add image here</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Formal Tuxedo</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="" alt="Designer Sherwani" style="display: none;">
+                        <span>Add image here</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Designer Sherwani</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="" alt="Wedding Collection" style="display: none;">
+                        <span>Add image here</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Wedding Collection</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="" alt="Premium Blazer" style="display: none;">
+                        <span>Add image here</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Premium Blazer</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="" alt="Formal Wear Collection" style="display: none;">
+                        <span>Add image here</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Formal Wear Collection</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">✁</div>
+                    <h3>Custom Tailoring</h3>
+                    <p>Bespoke tailoring services tailored to your exact measurements. We create custom pieces that fit perfectly and reflect your personal style.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">▭</div>
+                    <h3>Alterations</h3>
+                    <p>Professional alterations and repairs to keep your wardrobe looking pristine. Quick turnaround with meticulous attention to detail.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⟡</div>
+                    <h3>Design Consultation</h3>
+                    <p>Expert guidance from our master tailors to bring your vision to life. Personalized designs tailored to your individual style preferences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Reviews</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★ 5 Stars</div>
+                    <div class="testimonial-text">"RIPUDAMAN delivered exceptional craftsmanship on my wedding suit. The attention to detail is remarkable. Highly recommended for anyone seeking premium tailoring."</div>
+                    <div class="testimonial-author">— Rajesh Kumar</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★ 5 Stars</div>
+                    <div class="testimonial-text">"Professional, punctual, and perfect. I have been a client for over 5 years. The quality of their work is consistently outstanding."</div>
+                    <div class="testimonial-author">— Vikram Singh</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★ 5 Stars</div>
+                    <div class="testimonial-text">"The custom suits are impeccable. Premium materials, perfect fit, and delivered exactly on time. RIPUDAMAN is worth every penny."</div>
+                    <div class="testimonial-author">— Arjun Patel</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★ 5 Stars</div>
+                    <div class="testimonial-text">"Exceptional service and extraordinary craftsmanship. RIPUDAMAN sets the gold standard for premium formal wear in the industry."</div>
+                    <div class="testimonial-author">— Deepak Sharma</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-content">
+                            <h4>Location</h4>
+                            <p>123 Fashion Street, Tailor Lane<br>New Delhi, India - 110001</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-item-content">
+                            <h4>Phone</h4>
+                            <p>+91 98765 43210<br>+91 11 4567 8900</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">✉</div>
+                        <div class="contact-item-content">
+                            <h4>Email</h4>
+                            <p>info@ripudaman.com<br>orders@ripudaman.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">🕐</div>
+                        <div class="contact-item-content">
+                            <h4>Hours</h4>
+                            <p>Monday - Saturday: 10 AM - 8 PM<br>Sunday: 11 AM - 6 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! We will contact you soon.');">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="tel" placeholder="Your Phone Number">
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit" class="cta-button" style="align-self: flex-start; border: none; cursor: pointer;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 RIPUDAMAN - Premium Men's Tailor Shop. All Rights Reserved.</p>
+            <p>Crafting Excellence Since Day One</p>
+            <p style="margin-top: 15px;"><a href="index.html">Classic View</a> | <a href="portfolio.html">Gothic View</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('header')) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Gallery item click handler
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const text = this.querySelector('.gallery-text').textContent;
+                alert('Viewing: ' + text);
+            });
+        });
+    </script>
+</body>
+</html>

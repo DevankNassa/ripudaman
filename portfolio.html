@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIPUDAMAN - Portfolio & Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: #0a0a0a url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="gothic" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23332d2d"/><path d="M25 0 L50 25 L25 50 L0 25 Z" stroke="%23332d2d" stroke-width="0.5" fill="none"/></pattern></defs><rect width="100" height="100" fill="%230a0a0a"/><rect width="100" height="100" fill="url(%23gothic)"/></svg>');
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #1a0f1a 0%, #2d1a2d 100%);
+            color: #e0e0e0;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(139, 0, 139, 0.4);
+            border-bottom: 2px solid #8b008b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Trajan Pro', 'Georgia', serif;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #9333ea 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: #9333ea;
+            border-bottom: 2px solid #9333ea;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 15, 26, 0.8), rgba(45, 26, 45, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="%231a0f1a"/><line x1="0" y1="0" x2="100" y2="100" stroke="%23332d2d" stroke-width="1"/><line x1="100" y1="0" x2="0" y2="100" stroke="%23332d2d" stroke-width="1"/></pattern></defs><rect width="1200" height="600" fill="%230a0a0a"/><rect width="1200" height="600" fill="url(%23pattern)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #e0e0e0;
+            border-bottom: 3px solid #8b008b;
+        }
+
+        .hero-content h1 {
+            font-family: 'Trajan Pro', 'Georgia', serif;
+            font-size: 64px;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 8px rgba(147, 51, 234, 0.6);
+            color: #c084fc;
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #9333ea;
+            text-shadow: 1px 1px 3px rgba(147, 51, 234, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+            color: #f5f1ff;
+            padding: 12px 40px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 0 10px;
+            border: 2px solid #9333ea;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(147, 51, 234, 0.5);
+            border-color: #c084fc;
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: #c084fc;
+            border: 2px solid #9333ea;
+        }
+
+        .cta-button-secondary:hover {
+            background: #9333ea;
+            color: #f5f1ff;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 0;
+            background: #0a0a0a;
+            border-top: 3px solid #8b008b;
+            border-bottom: 3px solid #8b008b;
+        }
+
+        .section-title {
+            font-family: 'Trajan Pro', 'Georgia', serif;
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            letter-spacing: 2px;
+            color: #c084fc;
+            text-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 2px solid #8b008b;
+            aspect-ratio: 1;
+            background: #1a0f1a;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(139, 0, 139, 0.3);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(147, 51, 234, 0.6);
+            border-color: #9333ea;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            background: linear-gradient(135deg, #1a0f1a 0%, #2d1a2d 100%);
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(147, 51, 234, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-text {
+            color: #f5f1ff;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: #1a0f1a;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #2d1a2d 0%, #1a0f1a 100%);
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(139, 0, 139, 0.2);
+            transition: all 0.3s;
+            border: 2px solid #8b008b;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.3);
+            border-color: #9333ea;
+        }
+
+        .service-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #c084fc;
+        }
+
+        .service-card p {
+            color: #b0b0b0;
+            line-height: 1.8;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: #0a0a0a;
+            border-top: 3px solid #8b008b;
+            border-bottom: 3px solid #8b008b;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #2d1a2d 0%, #1a0f1a 100%);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #9333ea;
+            box-shadow: 0 5px 20px rgba(139, 0, 139, 0.2);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.4);
+            transform: translateX(5px);
+        }
+
+        .testimonial-text {
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            color: #9333ea;
+            font-weight: bold;
+        }
+
+        .testimonial-rating {
+            color: #c084fc;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a0f1a 0%, #0a0a0a 100%);
+            color: #b0b0b0;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 0;
+            border-top: 3px solid #8b008b;
+        }
+
+        footer p {
+            color: #808080;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #1a0f1a 0%, #2d1a2d 100%);
+                flex-direction: column;
+                gap: 0;
+                text-align: left;
+                padding: 0 20px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out, padding 0.2s ease-out;
+                pointer-events: none;
+                border-bottom: 2px solid #8b008b;
+            }
+
+            nav.active {
+                max-height: 300px;
+                padding: 20px;
+                pointer-events: auto;
+            }
+
+            nav a {
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+                letter-spacing: 1px;
+            }
+
+            header {
+                padding: 15px 0;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .cta-button {
+                padding: 10px 25px;
+                font-size: 14px;
+                margin: 5px;
+            }
+
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 40px;
+            }
+
+            .gallery-grid,
+            .services-grid,
+            .testimonials-grid {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">RIPUDAMAN</div>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav id="navMenu">
+                    <a href="index.html">Classic View</a>
+                    <a href="#gallery">Portfolio</a>
+                    <a href="#services">Services</a>
+                    <a href="#testimonials">Reviews</a>
+                    <a href="#contact">Contact</a>
+                       <a href="professional.html">Professional</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>RIPUDAMAN</h1>
+            <p>Crafted Excellence in Men's Formal Wear</p>
+            <a href="#contact" class="cta-button">Book Appointment</a>
+            <a href="#gallery" class="cta-button cta-button-secondary">View Portfolio</a>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Portfolio</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image">👔</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Custom Business Suit</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">🎩</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Formal Tuxedo</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">🥻</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Designer Sherwani</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">👗</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Wedding Collection</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">🧥</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Premium Blazer</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">🎭</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-text">Ethnic Masterpiece</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">✂️</div>
+                    <h3>Custom Tailoring</h3>
+                    <p>Bespoke creations tailored to your exact measurements and exclusive taste. Every stitch perfected for unparalleled elegance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💎</div>
+                    <h3>Premium Materials</h3>
+                    <p>Handpicked fabrics from the finest mills across the globe. Only the most luxurious materials grace our atelier.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Design Consultation</h3>
+                    <p>Expert guidance to transform your vision into wearable art. Our master tailors bring decades of expertise to every design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"RIPUDAMAN transformed my wedding vision into reality. The attention to detail and craftsmanship is simply unmatched. Highly recommended!"</div>
+                    <div class="testimonial-author">— Rajesh Kumar</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"The custom business suits are absolutely impeccable. I've been a loyal customer for 5 years and their work only gets better."</div>
+                    <div class="testimonial-author">— Vikram Singh</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"The designer sherwani exceeded all my expectations. Premium fabrics, perfect fit, and delivered on time. Truly a master tailor!"</div>
+                    <div class="testimonial-author">— Arjun Patel</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"World-class service and extraordinary craftsmanship. RIPUDAMAN is the only choice for premium formal wear. Worth every rupee!"</div>
+                    <div class="testimonial-author">— Deepak Sharma</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 RIPUDAMAN - Premium Men's Tailor Shop. All Rights Reserved.</p>
+            <p>Crafting Excellence Since Day One | Tradition Meets Modern Elegance</p>
+            <p style="margin-top: 10px;"><a href="index.html" style="color: #9333ea; text-decoration: none;">← Back to Classic View</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('header')) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Gallery item click handler
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const text = this.querySelector('.gallery-text').textContent;
+                alert('Viewing: ' + text);
+            });
+        });
+    </script>
+</body>
+</html>
