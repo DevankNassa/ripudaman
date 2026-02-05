@@ -68,6 +68,33 @@
             color: #d4af37;
         }
 
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
@@ -357,14 +384,48 @@
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {
-                flex-direction: column;
-                gap: 20px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: flex;
             }
 
             nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
                 flex-direction: column;
-                gap: 10px;
-                text-align: center;
+                gap: 0;
+                text-align: left;
+                padding: 0 20px; /* remove vertical padding when closed */
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out, padding 0.2s ease-out;
+                pointer-events: none; /* prevent interactions when closed */
+            }
+
+            nav.active {
+                max-height: 300px;
+                padding: 20px; /* restore padding when opened */
+                pointer-events: auto;
+            }
+
+            nav a {
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            .logo {
+                font-size: 24px;
             }
 
             .hero-content h1 {
@@ -383,6 +444,42 @@
                 font-size: 28px;
             }
         }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 20px;
+                letter-spacing: 1px;
+            }
+
+            header {
+                padding: 15px 0;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .cta-button {
+                padding: 10px 25px;
+                font-size: 14px;
+                margin: 5px;
+            }
+
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 40px;
+            }
+
+            .services-grid,
+            .products-grid,
+            .features {
+                gap: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -391,7 +488,12 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">RIPUDAMAN</div>
-                <nav>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav id="navMenu">
                     <a href="#home">Home</a>
                     <a href="#services">Services</a>
                     <a href="#products">Products</a>
@@ -597,5 +699,33 @@
             <p>Crafting Excellence Since Day One | Tradition Meets Modern Elegance</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('header')) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
